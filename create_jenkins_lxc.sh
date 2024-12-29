@@ -79,28 +79,3 @@ pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git
 
 echo -e "\n==> [LXC] Start bootstrap script"
 pct exec $LXC_ID -- /root/homelab_jenkins/bootstrap_jenkins.sh
-
-
-
-# echo -e "\n==> [LXC] Install docker"
-# pct exec $LXC_ID -- apt update
-# pct exec $LXC_ID -- apt upgrade -y
-# pct exec $LXC_ID -- apt install -y git curl docker docker.io
-
-
-# echo -e "\n==> [LXC] Install docker compose"
-# pct exec $LXC_ID -- mkdir -p /root/.docker/cli-plugins
-# pct exec $LXC_ID -- curl -SL \
-#     https://github.com/docker/compose/releases/download/v2.32.0/docker-compose-linux-x86_64 \
-#     -o /root/.docker/cli-plugins/docker-compose
-# pct exec $LXC_ID -- chmod +x /root/.docker/cli-plugins/docker-compose
-# pct exec $LXC_ID -- docker compose version
-
-
-# echo -e "\n==> [LXC] Clone repo"
-# pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git
-
-
-# echo -e "\n==> [LXC] Docker compose up"
-# pct exec $LXC_ID -- docker compose up -d -f /root/homelab_jenkins/docker-compose.yml
-
