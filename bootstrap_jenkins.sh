@@ -11,7 +11,7 @@ apt install -y curl docker docker.io
 COMPOSE_URL="https://github.com/docker/compose/releases/download/v2.32.0/docker-compose-linux-x86_64"
 COMPOSE_PATH="/root/.docker/cli-plugins/docker-compose"
 
-if [[ ! -f $COMPOSE_PATH ]]; do
+if [[ ! -f $COMPOSE_PATH ]]; then
     echo -e "\n==> [LXC] Install docker compose"
     mkdir -p /root/.docker/cli-plugins
     curl -SL $COMPOSE_URL -o $COMPOSE_PATH
