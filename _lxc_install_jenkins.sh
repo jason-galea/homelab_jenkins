@@ -7,5 +7,5 @@ apt upgrade -y
 apt install -y docker docker.io docker-compose
 
 
-echo -e "\n==> Docker hello-world"
-docker run hello-world
+# echo -e "\n==> Docker hello-world"
+# docker run hello-world

@@ -6,3 +6,16 @@ This repo has two purposes:
 - To prepare the above Jenkins container to run pipelines from other repos
 
 
+
+### Steps
+
+From a Proxmox host, clone the repo and run the install script
+
+    $ git clone https://github.com/jason-galea/homelab_jenkins.git
+
+    $ cd homelab_jenkins
+
+    $ ./scripts/prox_create_lxc.sh
+
+
+This will create a new LXC container, install Jenkins, and direct you to the URL.

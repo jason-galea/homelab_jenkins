@@ -64,8 +64,21 @@ while true; do
 done
 
 
+echo -e "\n==> Install Jenkins inside LXC container"
+# cp ./scripts/lxc_install_jenkins.sh $ROOTFS_STORAGE_PATH/subvol-$LXC_ID-disk-0/root/
+# pct exec $LXC_ID /root/lxc_install_jenkins.sh
+pct exec $LXC_ID -- apt update
+pct exec $LXC_ID -- apt upgrade -y
+pct exec $LXC_ID -- apt install -y git curl docker docker.io
 
-echo -e "\n==> Copy jenkins install script to container & run"
-cp ./install_jenkins_from_lxc.sh $ROOTFS_STORAGE_PATH/subvol-$LXC_ID-disk-0/root/
-pct exec $LXC_ID ./install_jenkins_from_lxc.sh
+pct exec $LXC_ID -- mkdir -p /root/.docker/cli-plugins
+pct exec $LXC_ID -- curl -SL \
+    https://github.com/docker/compose/releases/download/v2.32.0/docker-compose-linux-x86_64 \
+    -o /root/.docker/cli-plugins/docker-compose
+pct exec $LXC_ID -- chmod +x /root/.docker/cli-plugins/docker-compose
+pct exec $LXC_ID -- docker compose version
+
+# pct exec $LXC_ID -- apt install -y git curl
+pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git
+pct exec $LXC_ID -- docker compose up -d --
 
