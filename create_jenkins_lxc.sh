@@ -78,7 +78,7 @@ pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git
 
 
 echo -e "\n==> [LXC] Start bootstrap script"
-pct exec $LXC_ID -- /root/bootstrap_jenkins.sh
+pct exec $LXC_ID -- /root/homelab_jenkins/bootstrap_jenkins.sh
 
 
 
