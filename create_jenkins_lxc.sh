@@ -16,7 +16,7 @@ LXC_NET_IP="10.1.1.$LXC_ID"
 LXC_NET="name=eth0,bridge=vmbr0,firewall=1,gw=$LXC_NET_GW,ip=$LXC_NET_IP/24,type=veth"
 LXC_FEATURES="nesting=1"
 
-if [[ $(pct list | grep $LXC_ID) == "" ]]; do
+if [[ $(pct list | grep LXC_ID) == "" ]]; do
     echo -e "\n==> Search for latest debian CT template"
     LATEST_DEBIAN_TEMPLATE=$(
         pveam available --section system \
