@@ -18,7 +18,7 @@ if [[ ! -f $COMPOSE_PATH ]]; do
     chmod +x $COMPOSE_PATH
     docker compose version
 else
-    echo -e "\n==> [LXC] Docker compose is already installed, continuing"
+    echo -e "\n==> [LXC] Docker compose is already installed, continuing..."
 fi
 
 
