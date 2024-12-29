@@ -2,7 +2,7 @@
 
 
 echo -e "\n==> [LXC] Install docker"
-apt update
+# apt update ### This just happened a second ago
 apt upgrade -y
 apt install -y git curl docker docker.io
 

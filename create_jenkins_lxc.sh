@@ -65,6 +65,7 @@ done
 
 
 echo -e "\n==> Start bootstrap script inside LXC container"
+pct exec $LXC_ID -- apt install -y git
 # pct exec $LXC_ID -- rm -rf /root/homelab_jenkins ### :o
 pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git
 pct exec $LXC_ID -- /root/bootstrap_jenkins.sh
