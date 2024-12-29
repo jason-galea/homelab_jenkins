@@ -74,7 +74,7 @@ pct exec $LXC_ID -- apt install -y git
 
 echo -e "\n==> [LXC] Clone repo"
 # pct exec $LXC_ID -- rm -rf /root/homelab_jenkins ### :o
-pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git
+pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git /root/homelab_jenkins
 
 
 echo -e "\n==> [LXC] Start bootstrap script"
