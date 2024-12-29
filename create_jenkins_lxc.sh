@@ -64,10 +64,16 @@ while true; do
 done
 
 
-echo -e "\n==> Start bootstrap script inside LXC container"
+echo -e "\n==> [LXC] Install git"
 pct exec $LXC_ID -- apt install -y git
+
+
+echo -e "\n==> [LXC] Clone repo"
 # pct exec $LXC_ID -- rm -rf /root/homelab_jenkins ### :o
 pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git
+
+
+echo -e "\n==> [LXC] Start bootstrap script"
 pct exec $LXC_ID -- /root/bootstrap_jenkins.sh
 
 
