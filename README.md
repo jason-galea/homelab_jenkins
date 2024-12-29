@@ -15,7 +15,7 @@ From a Proxmox host, clone the repo and run the install script
 
     $ cd homelab_jenkins
 
-    $ ./scripts/prox_create_lxc.sh
+    $ ./create_jenkins_lxc.sh
 
 
 This will create a new LXC container, install Jenkins, and direct you to the URL.
