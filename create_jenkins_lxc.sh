@@ -44,8 +44,8 @@ if [[ $(pct list | grep $LXC_ID) == "" ]]; then
     pct resize $LXC_ID rootfs $LXC_ROOTFS_SIZE
 
 
-    echo -e "\n==> (DEBUG) Show new container config"
-    cat /etc/pve/lxc/$LXC_ID.conf
+    # echo -e "\n==> (DEBUG) Show new container config"
+    # cat /etc/pve/lxc/$LXC_ID.conf
 
 
     echo -e "\n==> Start new container"

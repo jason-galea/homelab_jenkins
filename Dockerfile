@@ -13,7 +13,7 @@ USER root
 #     $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 # RUN apt-get update && apt-get install -y docker-ce-cli
 RUN apt update
-RUN apt install ca-certificates curl
+RUN apt install -y ca-certificates curl
 RUN install -m 0755 -d /etc/apt/keyrings
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
 RUN chmod a+r /etc/apt/keyrings/docker.asc
