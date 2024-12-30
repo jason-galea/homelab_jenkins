@@ -4,6 +4,9 @@
 FROM jenkins/jenkins:2.479.2-jdk21
 USER root
 
+# ### https://github.com/jenkinsci/configuration-as-code-plugin/issues/393
+# ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
+
 RUN apt update \
     && apt install -y ca-certificates curl \
     && install -m 0755 -d /etc/apt/keyrings \
@@ -32,4 +35,5 @@ RUN jenkins-plugin-cli --plugins \
     favorite \
     github \
     github-branch-source \
-    token-macro
+    token-macro \
+    matrix-auth
