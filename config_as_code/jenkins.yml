@@ -12,17 +12,18 @@ jenkins:
   numExecutors: 0 ### Disable built-in node
   nodes:
     - permanent:
-        name: "static-agent1"
+        name: static-agent1
         <<: *jenkins_linux_node_anchor
     - permanent:
-        name: "static-agent2"
+        name: static-agent2
         <<: *jenkins_linux_node_anchor
   clouds:
     - docker:
-        name: "docker_cloud"
+        name: docker_cloud
         dockerApi:
           dockerHost:
-            uri: "tcp://jenkins-docker:2376" ### Must match name of docker:dind container
+            # uri: tcp://jenkins-docker:2376 ### Must match name of docker:dind container
+            uri: unix:///var/run/docker.sock
         exposeDockerHost: true
         templates:
           - name: "docker_agent"
@@ -42,3 +43,7 @@ jenkins:
             # pullTimeout: 300
             remoteFs: "/home/jenkins/agent/"
             instanceCapStr: "10"
+
+unclassified:
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleOnOver

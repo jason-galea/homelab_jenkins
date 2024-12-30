@@ -2,13 +2,30 @@
 ### https://plugins.jenkins.io/configuration-as-code/
 
 services:
+
+  jenkins-docker:
+    container_name: jenkins-docker
+    image: docker:dind
+    privileged: true
+    # environment:
+    #   DOCKER_TLS_CERTDIR: /certs
+    ports:
+      - 2376:2376 ### (Optional) Allow host LXC to control internal docker daemon
+    volumes:
+      # - jenkins-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+      # - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - jenkins
+    restart: always
+
   jenkins:
     container_name: jenkins
     build: ./compose/
     environment:
-      DOCKER_HOST: unix:///var/run/docker.sock
+      DOCKER_HOST: tcp://jenkins-docker:2376 ### Must match name of docker:dind container
       # DOCKER_CERT_PATH: /certs/client
-      # DOCKER_TLS_VERIFY: 1
+      DOCKER_TLS_VERIFY: 1
       CASC_JENKINS_CONFIG: /var/jenkins_home/config_as_code/
     ports:
       - 8080:8080 ### HTTP
@@ -16,7 +33,7 @@ services:
     volumes:
       # - jenkins-certs:/certs/client:ro
       - jenkins-data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/run/docker.sock:/var/run/docker.sock ### This is replaced by DOCKER_HOST above
       - ./config_as_code/:/var/jenkins_home/config_as_code/
     networks:
       - jenkins

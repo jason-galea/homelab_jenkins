@@ -1,10 +1,8 @@
 #!/usr/bin/bash
 
-
 echo -e "\n==> [LXC] Set locales"
 sed -i 's/^# *\(en_US.UTF-8\)/\1/' /etc/locale.gen
 locale-gen
-
 
 ### https://docs.docker.com/engine/install/debian/
 echo -e "\n==> [LXC] Install docker"
@@ -20,40 +18,17 @@ echo \
 apt update
 apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-
-# (
-#     cd /root/homelab_jenkins/compose
-
-
-#     echo -e "\n==> [LXC] Docker compose pull"
-#     docker compose pull
-
-
-#     echo -e "\n==> [LXC] Docker compose build"
-#     docker compose build
-
-
-#     echo -e "\n==> [LXC] Docker compose up"
-#     docker compose up -d
-# )
-
-
 echo -e "\n==> [LXC] Docker compose pull"
 docker compose pull
-
 
 echo -e "\n==> [LXC] Docker compose build"
 docker compose build
 
-
 echo -e "\n==> [LXC] Docker compose up"
 docker compose up -d
 
-
-
 URL="http://$(hostname -i):8080"
 echo -e "\n==> [LXC] Success! Your new Jenkins instance should be available at $URL"
-
 
 echo -e "\n==> [LXC] Show initial admin password"
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
