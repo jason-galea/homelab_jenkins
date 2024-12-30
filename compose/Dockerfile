@@ -8,6 +8,7 @@ FROM jenkins/jenkins:2.479.2-jdk21
 # ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
 
 RUN apt update \
+    && apt upgrade -y \
     && apt install -y ca-certificates curl \
     && install -m 0755 -d /etc/apt/keyrings \
     && curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc \
