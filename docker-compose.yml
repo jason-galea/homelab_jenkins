@@ -14,10 +14,10 @@ services:
     volumes:
       - jenkins-certs:/certs/client
       - jenkins-data:/var/jenkins_home
-      # - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - jenkins
-    # restart: always
+    restart: always
 
   jenkins:
     container_name: jenkins
@@ -33,11 +33,12 @@ services:
     volumes:
       - jenkins-certs:/certs/client:ro
       - jenkins-data:/var/jenkins_home
-      # - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./casc.yml:/var/jenkins_home/casc.yml
     networks:
       - jenkins
-    restart: on-failure
+    # restart: on-failure
+    restart: always
 
 volumes:
   jenkins-certs:
