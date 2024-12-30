@@ -30,7 +30,7 @@ jenkins:
             labelString: "docker_agent"
             connector: "attach"
             dockerTemplateBase:
-              image: "jenkins/agent"
+              image: "jenkins/agent:jdk21"
               mounts:
                 - "type=tmpfs,destination=/run"
                 - "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
