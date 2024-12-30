@@ -19,22 +19,30 @@ jenkins:
         <<: *jenkins_linux_node_anchor
   clouds:
     - docker:
-        containerCap: 10
+        # containerCap: 10
         dockerApi:
-          connectTimeout: 60
+          # connectTimeout: 60
           dockerHost:
             uri: "tcp://jenkins-docker:2376"
-          readTimeout: 60
-        exposeDockerHost: true
-        name: "docker"
+          # readTimeout: 60
+        # exposeDockerHost: true
+        # name: "docker"
         templates:
-          - name: "default_docker_agent"
-            labelString: "default_docker_agent"
+          - name: "docker_agent"
+            labelString: "docker_agent"
             connector: "attach"
             dockerTemplateBase:
-              cpuPeriod: 0
-              cpuQuota: 0
+              # cpuPeriod: 0
+              # cpuQuota: 0
               image: "jenkins/agent"
-            pullStrategy: PULL_ALWAYS
-            pullTimeout: 300
-            remoteFs: "/tmp/"
+              mounts:
+                - "type=tmpfs,destination=/run"
+                # - "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
+                # - "type=volume,src=hello,dst=/world"
+              environmentsString: |
+                hello=world
+                foo=bar
+            # pullStrategy: PULL_ALWAYS
+            # pullTimeout: 300
+            remoteFs: "/home/jenkins/agent/"
+            instanceCapStr: "10"
