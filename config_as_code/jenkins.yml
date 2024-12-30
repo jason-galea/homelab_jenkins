@@ -1,22 +1,22 @@
-x-jenkins-linux-node: &jenkins_linux_node_anchor
-  remoteFS: "/home/jenkins"
-  launcher:
-    inbound:
-      workDirSettings:
-        disabled: true
-        failIfWorkDirIsMissing: false
-        internalDir: "remoting"
-        workDirPath: "/tmp"
+# x-jenkins-linux-node: &jenkins_linux_node_anchor
+#   remoteFS: "/home/jenkins"
+#   launcher:
+#     inbound:
+#       workDirSettings:
+#         disabled: true
+#         failIfWorkDirIsMissing: false
+#         internalDir: "remoting"
+#         workDirPath: "/tmp"
 
 jenkins:
   numExecutors: 0 ### Disable built-in node
-  nodes:
-    - permanent:
-        name: static-agent1
-        <<: *jenkins_linux_node_anchor
-    - permanent:
-        name: static-agent2
-        <<: *jenkins_linux_node_anchor
+  # nodes:
+  #   - permanent:
+  #       name: static-agent1
+  #       <<: *jenkins_linux_node_anchor
+  #   - permanent:
+  #       name: static-agent2
+  #       <<: *jenkins_linux_node_anchor
   clouds:
     - docker:
         name: docker_cloud
