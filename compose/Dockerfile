@@ -2,10 +2,11 @@
 ### https://docs.docker.com/engine/install/debian/
 ### https://github.com/jenkinsci/docker/#preinstalling-plugins
 
-# FROM jenkins/jenkins:2.479.2-jdk21
 FROM jenkins/jenkins:lts-jdk21
 USER root
 
+### This would be nice, but it also skips creating '/var/jenkins_home/secrets/initialAdminPassword'
+### TODO: Generate admin password in advance --> template it into jenkins.yml
 # ### https://github.com/jenkinsci/configuration-as-code-plugin/issues/393
 # ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
 
@@ -23,7 +24,5 @@ RUN apt update \
     && usermod -aG docker jenkins
 
 USER jenkins
-# ADD ./plugins.txt ~/plugins.txt
-# RUN jenkins-plugin-cli --plugin-file ~/plugins.txt
 COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt

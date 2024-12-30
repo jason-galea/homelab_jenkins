@@ -33,12 +33,12 @@ jenkins:
               image: "jenkins/agent"
               mounts:
                 - "type=tmpfs,destination=/run"
-                # - "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
+                - "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
                 # - "type=volume,src=hello,dst=/world"
               environmentsString: |
                 hello=world
                 foo=bar
-                DOCKER_TLS_CERTDIR=""
+              # DOCKER_TLS_CERTDIR=""
             # pullStrategy: PULL_ALWAYS
             # pullTimeout: 300
             remoteFs: "/home/jenkins/agent/"
