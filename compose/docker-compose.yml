@@ -26,7 +26,7 @@ services:
       DOCKER_HOST: tcp://jenkins-docker:2376 ### Must match name of docker:dind container
       DOCKER_CERT_PATH: /certs/client
       DOCKER_TLS_VERIFY: 1
-      CASC_JENKINS_CONFIG: /var/jenkins_home/casc.yml
+      CASC_JENKINS_CONFIG: /var/jenkins_home/config_as_code/
     ports:
       - 8080:8080 ### HTTP
       - 50000:50000 ### Inbound Jenkins agents
@@ -34,7 +34,7 @@ services:
       - jenkins-certs:/certs/client:ro
       - jenkins-data:/var/jenkins_home
       # - /var/run/docker.sock:/var/run/docker.sock
-      - ./casc.yml:/var/jenkins_home/casc.yml
+      - ./config_as_code/:/var/jenkins_home/config_as_code/
     networks:
       - jenkins
     # restart: on-failure

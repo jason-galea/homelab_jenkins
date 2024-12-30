@@ -42,7 +42,32 @@ jenkins:
               environmentsString: |
                 hello=world
                 foo=bar
+                DOCKER_TLS_CERTDIR=""
             # pullStrategy: PULL_ALWAYS
             # pullTimeout: 300
             remoteFs: "/home/jenkins/agent/"
             instanceCapStr: "10"
+
+
+jobs:
+  - script: >
+      multibranchPipelineJob('image-jenkins') {
+        branchSources {
+          github {
+            // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).
+            id('12312313') // IMPORTANT: use a constant and unique identifier
+            // scanCredentialsId('github')
+            repoOwner('jason-galea')
+            repository('homelab_jenkins')
+            // apiUri('http://my-github-server/api/v3') // Optional, needed for private github enterprise servers
+          }
+        }
+        orphanedItemStrategy {
+          discardOldItems {
+            numToKeep(1)
+          }
+        }
+        triggers {
+          periodic(5)
+        }
+      }
