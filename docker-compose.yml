@@ -21,7 +21,7 @@ services:
 
   jenkins:
     container_name: jenkins
-    build: .
+    build: ./compose/
     environment:
       DOCKER_HOST: tcp://jenkins-docker:2376 ### Must match name of docker:dind container
       DOCKER_CERT_PATH: /certs/client
