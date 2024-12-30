@@ -13,6 +13,7 @@ configuration-as-code
 credentials-binding
 dark-theme
 docker-plugin
+docker-workflow
 favorite
 git
 github
