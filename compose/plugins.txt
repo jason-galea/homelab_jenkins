@@ -18,6 +18,7 @@ favorite:latest
 git:latest
 github:latest
 github-branch-source:latest
+job-dsl:latest
 matrix-auth:latest
 pam-auth:latest
 pipeline-github-lib:latest
