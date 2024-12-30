@@ -6,7 +6,7 @@ docker compose down
 
 
 echo -e "\n==> Delete data vol"
-docker volume rm compose_jenkins-data
+docker volume rm jenkins_data
 
 
 echo -e "\n==> Build new Jenkins image"

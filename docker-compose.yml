@@ -7,15 +7,12 @@ services:
     build: ./compose/
     environment:
       DOCKER_HOST: unix:///var/run/docker.sock
-      # DOCKER_CERT_PATH: /certs/client
-      # DOCKER_TLS_VERIFY: 1
       CASC_JENKINS_CONFIG: /var/jenkins_home/config_as_code/
     ports:
       - 8080:8080 ### HTTP
       - 50000:50000 ### Inbound Jenkins agents
     volumes:
-      # - jenkins-certs:/certs/client:ro
-      - jenkins-data:/var/jenkins_home
+      - jenkins_data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config_as_code/:/var/jenkins_home/config_as_code/
     networks:
@@ -23,8 +20,8 @@ services:
     restart: always
 
 volumes:
-  # jenkins-certs:
-  jenkins-data:
+  jenkins_data:
+    name: jenkins_data
 
 networks:
   jenkins:
