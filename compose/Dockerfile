@@ -2,13 +2,12 @@
 ### https://docs.docker.com/engine/install/debian/
 
 FROM jenkins/jenkins:2.479.2-jdk21
-# USER root
+USER root
 
 # ### https://github.com/jenkinsci/configuration-as-code-plugin/issues/393
 # ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
 
 RUN apt update \
-    && apt upgrade -y \
     && apt install -y ca-certificates curl \
     && install -m 0755 -d /etc/apt/keyrings \
     && curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc \
@@ -20,7 +19,7 @@ RUN apt update \
     && apt update \
     && apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-USER jenkins
+# USER jenkins
 # ADD ./plugins.txt ~/plugins.txt
 # RUN jenkins-plugin-cli --plugin-file ~/plugins.txt
 COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
