@@ -13,7 +13,6 @@ LXC_SWAP=512
 LXC_ROOTFS_SIZE=16G
 LXC_NET_GW="10.1.1.1"
 LXC_NET_IP="10.1.1.$LXC_ID"
-# LXC_NET="name=eth0,bridge=vmbr0,firewall=1,gw=$LXC_NET_GW,hwaddr=46:54:F4:A0:18:ED,ip=$LXC_NET_IP/24,type=veth"
 LXC_NET="name=eth0,bridge=vmbr0,firewall=1,gw=$LXC_NET_GW,ip=$LXC_NET_IP/24,type=veth"
 LXC_FEATURES="nesting=1"
 
@@ -74,7 +73,9 @@ pct exec $LXC_ID -- apt install -y git
 
 echo -e "\n==> [LXC] Clone repo"
 pct exec $LXC_ID -- rm -rf /root/homelab_jenkins ### :o
-pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git /root/homelab_jenkins
+pct exec $LXC_ID -- git clone \
+    https://github.com/jason-galea/homelab_jenkins.git \
+    /root/homelab_jenkins
 
 
 echo -e "\n==> [LXC] Start bootstrap script"
