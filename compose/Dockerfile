@@ -2,7 +2,7 @@
 ### https://docs.docker.com/engine/install/debian/
 
 FROM jenkins/jenkins:2.479.2-jdk21
-USER root
+# USER root
 
 # ### https://github.com/jenkinsci/configuration-as-code-plugin/issues/393
 # ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
@@ -19,7 +19,7 @@ RUN apt update \
     && apt update \
     && apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-USER jenkins
+# USER jenkins
 # RUN jenkins-plugin-cli --plugins "blueocean docker-workflow configuration-as-code"
 # RUN jenkins-plugin-cli --plugins \
 #     blueocean \
@@ -37,5 +37,7 @@ USER jenkins
 #     github-branch-source \
 #     token-macro \
 #     matrix-auth
-ADD ./plugins.txt ~/plugins.txt
-RUN jenkins-plugin-cli --plugin-file ~/plugins.txt
+# ADD ./plugins.txt ~/plugins.txt
+# RUN jenkins-plugin-cli --plugin-file ~/plugins.txt
+COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt

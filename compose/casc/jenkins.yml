@@ -19,21 +19,16 @@ jenkins:
         <<: *jenkins_linux_node_anchor
   clouds:
     - docker:
-        # containerCap: 10
+        name: "docker_cloud"
         dockerApi:
-          # connectTimeout: 60
           dockerHost:
-            uri: "tcp://jenkins-docker:2376"
-          # readTimeout: 60
-        # exposeDockerHost: true
-        # name: "docker"
+            uri: "tcp://jenkins-docker:2376" ### Must match name of docker:dind container
+        exposeDockerHost: true
         templates:
           - name: "docker_agent"
             labelString: "docker_agent"
             connector: "attach"
             dockerTemplateBase:
-              # cpuPeriod: 0
-              # cpuQuota: 0
               image: "jenkins/agent"
               mounts:
                 - "type=tmpfs,destination=/run"
@@ -47,27 +42,3 @@ jenkins:
             # pullTimeout: 300
             remoteFs: "/home/jenkins/agent/"
             instanceCapStr: "10"
-
-
-jobs:
-  - script: >
-      multibranchPipelineJob('image-jenkins') {
-        branchSources {
-          github {
-            // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).
-            id('12312313') // IMPORTANT: use a constant and unique identifier
-            // scanCredentialsId('github')
-            repoOwner('jason-galea')
-            repository('homelab_jenkins')
-            // apiUri('http://my-github-server/api/v3') // Optional, needed for private github enterprise servers
-          }
-        }
-        orphanedItemStrategy {
-          discardOldItems {
-            numToKeep(1)
-          }
-        }
-        triggers {
-          periodic(5)
-        }
-      }
