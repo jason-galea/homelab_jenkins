@@ -34,3 +34,6 @@ echo -e "\n==> [LXC] Docker compose up"
     docker compose up -d
 )
 
+
+URL="http://$(hostname -i):8080"
+echo -e "\n==> [LXC] Success! Your new Jenkins instance should be available at http://$IP:8080"

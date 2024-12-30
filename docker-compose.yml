@@ -9,14 +9,14 @@ services:
     privileged: true
     # user: root
     environment:
-      - DOCKER_TLS_CERTDIR: /certs
+      DOCKER_TLS_CERTDIR: /certs
     ports:
       # - 2376:2376 ### Expose host docker daemon to Jenkins
       - 8080:8080 ### HTTP
       - 50000:50000 ###
     volumes:
-      - certs:jenkins-docker-certs:/certs/client
-      - jenkins:jenkins-data:/var/jenkins_home
+      - certs:/certs/client
+      - jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - jenkins
@@ -24,9 +24,9 @@ services:
 
 volumes:
   certs:
-    driver: overlay2
+    # driver: overlay2
   jenkins:
-    driver: overlay2
+    # driver: overlay2
 
 networks:
   jenkins:
