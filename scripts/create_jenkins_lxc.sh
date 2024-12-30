@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+
 ROOTFS_STORAGE=vms
 ROOTFS_STORAGE_PATH="/tank/vms"
 
@@ -16,12 +17,11 @@ LXC_NET_IP="10.1.1.$LXC_ID"
 LXC_NET="name=eth0,bridge=vmbr0,firewall=1,gw=$LXC_NET_GW,ip=$LXC_NET_IP/24,type=veth"
 LXC_FEATURES="nesting=1"
 
+
 if [[ $(pct list | grep $LXC_ID) == "" ]]; then
     echo -e "\n==> Search for latest debian CT template"
-    LATEST_DEBIAN_TEMPLATE=$(
-        pveam available --section system \
-            | sed 's|system\ *||' | grep debian | sort | tail -n1
-    )
+    LATEST_DEBIAN_TEMPLATE=$(pveam available --section system \
+        | sed 's|system\ *||' | grep debian | sort | tail -n1)
     echo -e "\n==> Download CT template '$LATEST_DEBIAN_TEMPLATE'"
     pveam download local $LATEST_DEBIAN_TEMPLATE
 
@@ -52,7 +52,6 @@ if [[ $(pct list | grep $LXC_ID) == "" ]]; then
     pct start $LXC_ID
 
 
-    # echo -e "\n==> Wait for container to start"
     while true; do
         if [[ $(lxc-info $LXC_ID | grep RUNNING) == "" ]]; then
             echo "==> Container not yet started, waiting 3 seconds..."
@@ -74,9 +73,9 @@ pct exec $LXC_ID -- apt install -y git
 
 
 echo -e "\n==> [LXC] Clone repo"
-# pct exec $LXC_ID -- rm -rf /root/homelab_jenkins ### :o
+pct exec $LXC_ID -- rm -rf /root/homelab_jenkins ### :o
 pct exec $LXC_ID -- git clone https://github.com/jason-galea/homelab_jenkins.git /root/homelab_jenkins
 
 
 echo -e "\n==> [LXC] Start bootstrap script"
-pct exec $LXC_ID -- /root/homelab_jenkins/bootstrap_jenkins.sh
+pct exec $LXC_ID -- /root/homelab_jenkins/scripts/bootstrap_jenkins.sh
