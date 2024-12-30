@@ -11,6 +11,7 @@ A single script to prepare a Jenkins LXC container on top of Proxmox.
 This Jenkins instance will be fully configured, and ready for you to deploy
 all other services from its GUI.
 
+Pipelines are defined in the `config_as_code/pipelines` directory
 
 
 ### Step 1 - Deploy Jenkins
@@ -34,7 +35,7 @@ This will create a new LXC container, install Jenkins, and direct you to the URL
 
 
 
-### Step 3 - Configure Jenkins
+<!-- ### Step 3 - Configure Jenkins -->
 
 <!-- asd -->
 

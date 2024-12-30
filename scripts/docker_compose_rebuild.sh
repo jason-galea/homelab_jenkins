@@ -2,7 +2,7 @@
 
 
 echo -e "\n==> Compose down"
-docker compose -f compose/docker-compose.yml down
+docker compose down
 
 
 echo -e "\n==> Delete data vol"
@@ -10,9 +10,9 @@ docker volume rm compose_jenkins-data
 
 
 echo -e "\n==> Build new Jenkins image"
-docker compose -f compose/docker-compose.yml build --no-cache
+docker compose build --no-cache
 
 
 echo -e "\n==> Compose up"
-docker compose -f compose/docker-compose.yml up -d
+docker compose up -d
 
