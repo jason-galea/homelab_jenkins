@@ -1,31 +1,48 @@
 ### https://www.jenkins.io/doc/book/installing/docker/
-### https://www.cloudbees.com/blog/how-to-install-and-run-jenkins-with-docker-compose
+### https://plugins.jenkins.io/configuration-as-code/
 
 services:
-  jenkins:
-    container_name: jenkins
-    # image: jenkins/jenkins:2.430-jdk21
-    build: .
+
+  jenkins-docker:
+    container_name: jenkins-docker
+    image: docker:dind
     privileged: true
-    # user: root
     environment:
       DOCKER_TLS_CERTDIR: /certs
     ports:
-      # - 2376:2376 ### Expose host docker daemon to Jenkins
-      - 8080:8080 ### HTTP
-      - 50000:50000 ###
+      - 2376:2376 ### Allow host LXC to control internal docker daemon
     volumes:
-      - certs:/certs/client
-      - jenkins:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
+      - jenkins-certs:/certs/client
+      - jenkins-data:/var/jenkins_home
+      # - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - jenkins
-    restart: always
+    # restart: always
+
+  jenkins:
+    container_name: jenkins
+    build: .
+    environment:
+      DOCKER_HOST: tcp://jenkins-docker:2376 ### Must match name of docker:dind container
+      DOCKER_CERT_PATH: /certs/client
+      DOCKER_TLS_VERIFY: 1
+      CASC_JENKINS_CONFIG: /var/jenkins_home/casc.yml
+    ports:
+      - 8080:8080 ### HTTP
+      - 50000:50000 ### Inbound Jenkins agents
+    volumes:
+      - jenkins-certs:/certs/client:ro
+      - jenkins-data:/var/jenkins_home
+      # - /var/run/docker.sock:/var/run/docker.sock
+      - ./casc.yml:/var/jenkins_home/casc.yml
+    networks:
+      - jenkins
+    restart: on-failure
 
 volumes:
-  certs:
+  jenkins-certs:
     # driver: overlay2
-  jenkins:
+  jenkins-data:
     # driver: overlay2
 
 networks:
