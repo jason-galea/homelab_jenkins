@@ -19,7 +19,8 @@ RUN apt update \
         $(. /etc/os-release && echo "$VERSION_CODENAME") stable" \
         | tee /etc/apt/sources.list.d/docker.list > /dev/null \
     && apt update \
-    && apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    && apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin \
+    && usermod -aG docker jenkins
 
 USER jenkins
 # ADD ./plugins.txt ~/plugins.txt
