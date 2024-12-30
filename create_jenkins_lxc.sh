@@ -69,6 +69,7 @@ fi
 
 
 echo -e "\n==> [LXC] Install git"
+pct exec $LXC_ID -- apt update
 pct exec $LXC_ID -- apt install -y git
 
 
