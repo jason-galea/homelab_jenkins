@@ -19,24 +19,7 @@ RUN apt update \
     && apt update \
     && apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# USER jenkins
-# RUN jenkins-plugin-cli --plugins "blueocean docker-workflow configuration-as-code"
-# RUN jenkins-plugin-cli --plugins \
-#     blueocean \
-#     blueocean-bitbucket-pipeline \
-#     blueocean-events \
-#     blueocean-github-pipeline \
-#     blueocean-git-pipeline \
-#     blueocean-pipeline-api-impl \
-#     blueocean-pipeline-editor \
-#     blueocean-rest-impl \
-#     docker-plugin \
-#     configuration-as-code \
-#     favorite \
-#     github \
-#     github-branch-source \
-#     token-macro \
-#     matrix-auth
+USER jenkins
 # ADD ./plugins.txt ~/plugins.txt
 # RUN jenkins-plugin-cli --plugin-file ~/plugins.txt
 COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
