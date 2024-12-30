@@ -13,7 +13,7 @@ all other services from its GUI.
 
 
 
-### Steps
+### Step 1 - Deploy Jenkins
 
 From a Proxmox host, clone the repo and run the install script
 
@@ -25,3 +25,17 @@ From a Proxmox host, clone the repo and run the install script
 
 
 This will create a new LXC container, install Jenkins, and direct you to the URL.
+
+
+
+### Step 2 - Log in to Jenkins, save the admin password
+
+<!-- asd -->
+
+
+
+### Step 3 - Configure Jenkins
+
+<!-- asd -->
+
+
