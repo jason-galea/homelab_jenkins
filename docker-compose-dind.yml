@@ -1,6 +1,13 @@
 ### https://www.jenkins.io/doc/book/installing/docker/
 ### https://plugins.jenkins.io/configuration-as-code/
 
+
+########################################
+### ALRIGHT THIS IS DEAD
+### https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
+########################################
+
+
 services:
 
   jenkins-docker:
