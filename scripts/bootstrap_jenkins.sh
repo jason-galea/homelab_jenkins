@@ -21,9 +21,19 @@ apt update
 apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 
-echo -e "\n==> [LXC] Docker compose up"
 (
     cd /root/homelab_jenkins/compose
+
+
+    echo -e "\n==> [LXC] Docker compose pull"
+    docker compose pull
+
+
+    echo -e "\n==> [LXC] Docker compose build"
+    docker compose build
+
+
+    echo -e "\n==> [LXC] Docker compose up"
     docker compose up -d
 )
 
