@@ -21,19 +21,21 @@ RUN apt update \
 
 USER jenkins
 # RUN jenkins-plugin-cli --plugins "blueocean docker-workflow configuration-as-code"
-RUN jenkins-plugin-cli --plugins \
-    blueocean \
-    blueocean-bitbucket-pipeline \
-    blueocean-events \
-    blueocean-github-pipeline \
-    blueocean-git-pipeline \
-    blueocean-pipeline-api-impl \
-    blueocean-pipeline-editor \
-    blueocean-rest-impl \
-    docker-plugin \
-    configuration-as-code \
-    favorite \
-    github \
-    github-branch-source \
-    token-macro \
-    matrix-auth
+# RUN jenkins-plugin-cli --plugins \
+#     blueocean \
+#     blueocean-bitbucket-pipeline \
+#     blueocean-events \
+#     blueocean-github-pipeline \
+#     blueocean-git-pipeline \
+#     blueocean-pipeline-api-impl \
+#     blueocean-pipeline-editor \
+#     blueocean-rest-impl \
+#     docker-plugin \
+#     configuration-as-code \
+#     favorite \
+#     github \
+#     github-branch-source \
+#     token-macro \
+#     matrix-auth
+ADD ./plugins.txt ~/plugins.txt
+RUN jenkins-plugin-cli --plugin-file ~/plugins.txt
