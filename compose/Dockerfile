@@ -1,5 +1,6 @@
 ### https://www.jenkins.io/doc/book/installing/docker/
 ### https://docs.docker.com/engine/install/debian/
+### https://github.com/jenkinsci/docker/#preinstalling-plugins
 
 # FROM jenkins/jenkins:2.479.2-jdk21
 FROM jenkins/jenkins:lts-jdk21
