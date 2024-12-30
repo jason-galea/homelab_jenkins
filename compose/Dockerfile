@@ -1,7 +1,8 @@
 ### https://www.jenkins.io/doc/book/installing/docker/
 ### https://docs.docker.com/engine/install/debian/
 
-FROM jenkins/jenkins:2.479.2-jdk21
+# FROM jenkins/jenkins:2.479.2-jdk21
+FROM jenkins/jenkins:lts-jdk21
 USER root
 
 # ### https://github.com/jenkinsci/configuration-as-code-plugin/issues/393
@@ -19,7 +20,7 @@ RUN apt update \
     && apt update \
     && apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-# USER jenkins
+USER jenkins
 # ADD ./plugins.txt ~/plugins.txt
 # RUN jenkins-plugin-cli --plugin-file ~/plugins.txt
 COPY --chown=jenkins:jenkins plugins.txt /usr/share/jenkins/ref/plugins.txt
