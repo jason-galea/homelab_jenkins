@@ -10,7 +10,7 @@ docker volume rm compose_jenkins-data
 
 
 echo -e "\n==> Build new Jenkins image"
-docker compose -f compose/docker-compose.yml build
+docker compose -f compose/docker-compose.yml build --no-cache
 
 
 echo -e "\n==> Compose up"
