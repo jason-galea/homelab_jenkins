@@ -67,5 +67,8 @@ docker compose up -d
 URL="http://$(hostname -i):8080"
 echo -e "\n==> [LXC] Success! Your new Jenkins instance should be available at $URL"
 
+echo -e "\n==> [LXC] Sleeping 5 seconds while Jenkins starts..."
+sleep 5
+
 echo -e "\n==> [LXC] Show initial admin password"
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
