@@ -1,0 +1,44 @@
+# x-jenkins-linux-node: &jenkins_linux_node_anchor
+#   remoteFS: "/home/jenkins"
+#   launcher:
+#     inbound:
+#       workDirSettings:
+#         disabled: true
+#         failIfWorkDirIsMissing: false
+#         internalDir: "remoting"
+#         workDirPath: "/tmp"
+
+# jenkins:
+#   numExecutors: 0 ### Disable built-in node
+#   nodes:
+#     - permanent:
+#         name: "static-agent1"
+#         <<: *jenkins_linux_node_anchor
+#     - permanent:
+#         name: "static-agent2"
+#         <<: *jenkins_linux_node_anchor
+#   clouds:
+#     - docker:
+#         name: "docker_cloud"
+#         dockerApi:
+#           dockerHost:
+#             uri: "tcp://jenkins-docker:2376" ### Must match name of docker:dind container
+#         exposeDockerHost: true
+#         templates:
+#           - name: "docker_agent"
+#             labelString: "docker_agent"
+#             connector: "attach"
+#             dockerTemplateBase:
+#               image: "jenkins/agent"
+#               mounts:
+#                 - "type=tmpfs,destination=/run"
+#                 # - "type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock"
+#                 # - "type=volume,src=hello,dst=/world"
+#               environmentsString: |
+#                 hello=world
+#                 foo=bar
+#                 DOCKER_TLS_CERTDIR=""
+#             # pullStrategy: PULL_ALWAYS
+#             # pullTimeout: 300
+#             remoteFs: "/home/jenkins/agent/"
+#             instanceCapStr: "10"

@@ -9,6 +9,8 @@
 #         workDirPath: "/tmp"
 
 jenkins:
+  # location:
+  #   url: "http://10.1.1.182:8080/" ### TODO: Template value on launch
   numExecutors: 0 ### Disable built-in node
   # nodes:
   #   - permanent:
@@ -22,7 +24,6 @@ jenkins:
         name: docker_cloud
         dockerApi:
           dockerHost:
-            # uri: tcp://jenkins-docker:2376 ### Must match name of docker:dind container
             uri: unix:///var/run/docker.sock
         exposeDockerHost: true
         templates:
