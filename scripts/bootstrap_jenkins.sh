@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 HOME="/root/homelab_jenkins"
+IP=$(hostname -i)
 
 echo -e "\n==> [LXC] DEBUG"
 echo "id = $(id)"
@@ -46,7 +47,7 @@ echo -e "\n==> [LXC] Template Jenkins config file"
 JENKINS_CONFIG=$HOME/config_as_code/jenkins.yml
 cp $HOME/templates/jenkins.template.yml $JENKINS_CONFIG
 
-sed -i "s|__JENKINS_IP__|$(hostname -i)|g" $JENKINS_CONFIG
+sed -i "s|__JENKINS_IP__|$IP|g" $JENKINS_CONFIG
 PRIV_KEY=$(grep -v 'OPENSSH PRIVATE KEY' $HOME/jenkins_agent_keys/id_rsa | xargs echo | sed 's|\ ||g')
 # echo "PRIV_KEY=$PRIV_KEY"
 sed -i "s|__SSH_CRED_PRIVATE_KEY__|$PRIV_KEY|g" $JENKINS_CONFIG
@@ -64,7 +65,7 @@ docker compose build
 echo -e "\n==> [LXC] Docker compose up"
 docker compose up -d
 
-URL="http://$(hostname -i):8080"
+URL="http://$IP:8080"
 echo -e "\n==> [LXC] Success! Your new Jenkins instance should be available at $URL"
 
 echo -e "\n==> [LXC] Sleeping 5 seconds while Jenkins starts..."
