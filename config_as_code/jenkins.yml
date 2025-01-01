@@ -19,6 +19,21 @@ jenkins:
   #   - permanent:
   #       name: static-agent2
   #       <<: *jenkins_linux_node_anchor
+
+  nodes:
+    - permanent:
+        name: "static-agent"
+        remoteFS: "/home/jenkins"
+        launcher:
+          inbound:
+            workDirSettings:
+              disabled: true
+              failIfWorkDirIsMissing: false
+              internalDir: "remoting"
+              workDirPath: "/tmp"
+
+  slaveAgentPort: 50000
+
   clouds:
     - docker:
         name: docker_cloud
