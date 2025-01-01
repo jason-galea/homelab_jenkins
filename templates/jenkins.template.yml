@@ -11,18 +11,18 @@
 credentials:
   system:
     domainCredentials:
-    - credentials:
-      - basicSSHUserPrivateKey:
-          id: "jenkins_ssh"
-          username: "jenkins_ssh"
-          privateKeySource:
-            directEntry:
-              privateKey: "{__SSH_CRED_PRIVATE_KEY__}"
-          scope: GLOBAL
+      - credentials:
+          - basicSSHUserPrivateKey:
+              id: "jenkins_ssh"
+              username: "jenkins_ssh"
+              privateKeySource:
+                directEntry:
+                  privateKey: "{__SSH_CRED_PRIVATE_KEY__}"
+              scope: GLOBAL
 
 jenkins:
-  # location:
-  #   url: "http://__JENKINS_IP__:8080/"
+  location:
+    url: "http://__JENKINS_IP__:8080/"
   numExecutors: 0 ### Disable built-in node
   slaveAgentPort: 50000
 

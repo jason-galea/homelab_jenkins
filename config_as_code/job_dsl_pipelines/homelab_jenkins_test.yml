@@ -39,9 +39,9 @@ jobs:
             numToKeep(1)
           }
         }
-        triggers {
-          periodic(5)
-        }
+        // triggers {
+        //   periodic(5)
+        // }
         factory {
           workflowBranchProjectFactory {
             scriptPath("pipelines/homelab_jenkins_test.groovy")
