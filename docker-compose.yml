@@ -1,13 +1,13 @@
 ### https://www.jenkins.io/doc/book/installing/docker/
 ### https://plugins.jenkins.io/configuration-as-code/
+### https://www.jenkins.io/doc/book/using/using-agents/#creating-your-docker-agent
+### https://dev.to/ninztec/deploy-jenkins-using-docker-compose-with-production-ready-155f
 
 services:
+
   jenkins:
     container_name: jenkins
     build: ./compose/
-    environment:
-      DOCKER_HOST: unix:///var/run/docker.sock
-      CASC_JENKINS_CONFIG: /var/jenkins_home/config_as_code/
     ports:
       - 8080:8080 ### HTTP
       - 50000:50000 ### Inbound Jenkins agents
@@ -15,6 +15,22 @@ services:
       - jenkins_data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config_as_code/:/var/jenkins_home/config_as_code/
+    environment:
+      DOCKER_HOST: unix:///var/run/docker.sock
+      CASC_JENKINS_CONFIG: /var/jenkins_home/config_as_code/
+    networks:
+      - jenkins
+    restart: always
+
+  ssh_agent_1:
+    container_name: ssh_agent_1
+    image: jenkins/ssh-agent:jdk21
+    ports:
+      - "4444:22" ### Expose SSH port 4444
+    volumes:
+      - ./jenkins_agent_keys:/home/jenkins/.ssh:ro ### Prepared in "bootstrap_jenkins.sh"
+    environment:
+      SSH_PUBLIC_KEY_DIR: /home/jenkins/.ssh
     networks:
       - jenkins
     restart: always
