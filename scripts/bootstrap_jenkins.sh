@@ -47,7 +47,7 @@ JENKINS_CONFIG=$HOME/config_as_code/jenkins.yml
 cp $HOME/templates/jenkins.template.yml $JENKINS_CONFIG
 
 sed -i "s|__JENKINS_IP__|$(hostname -i)|g" $JENKINS_CONFIG
-PRIV_KEY=$(grep -v 'OPENSSH PRIVATE KEY' $HOME/jenkins_agent_keys/id_rsa)
+PRIV_KEY=$(grep -v 'OPENSSH PRIVATE KEY' $HOME/jenkins_agent_keys/id_rsa | xargs echo | sed 's|\ ||g')
 echo "PRIV_KEY=$PRIV_KEY"
 sed -i "s|__SSH_CRED_PRIVATE_KEY__|$PRIV_KEY|g" $JENKINS_CONFIG
 
