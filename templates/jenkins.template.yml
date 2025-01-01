@@ -21,8 +21,8 @@ credentials:
               scope: GLOBAL
 
 jenkins:
-  location:
-    url: "http://__JENKINS_IP__:8080/"
+  # location:
+  #   url: "http://__JENKINS_IP__:8080/"
   numExecutors: 0 ### Disable built-in node
   slaveAgentPort: 50000
 
