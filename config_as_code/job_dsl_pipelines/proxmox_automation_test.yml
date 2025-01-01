@@ -8,7 +8,7 @@ jobs:
             id('n98w7zy3n5dk87wzt3fgk4d8zq') // IMPORTANT: use a constant and unique identifier
             // scanCredentialsId('github') // Public repo
             repoOwner('jason-galea')
-            repository('homelab_jenkins')
+            repository('proxmox_automation')
             // apiUri('http://my-github-server/api/v3') // Optional, needed for private github enterprise servers
           }
         }
