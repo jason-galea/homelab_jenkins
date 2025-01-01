@@ -1,7 +1,7 @@
 jobs:
   - script: >
-      multibranchPipelineJob('homelab_jenkins_test') {
-        displayName('Homelab Jenkins - Test Pipeline')
+      multibranchPipelineJob('proxmox_automation_test') {
+        displayName('Proxmox Automation - Test Pipeline')
         branchSources {
           github {
             // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).
@@ -22,7 +22,7 @@ jobs:
         // }
         factory {
           workflowBranchProjectFactory {
-            scriptPath("pipelines/homelab_jenkins_test.groovy")
+            scriptPath("pipelines/ansible_test.groovy")
           }
         }
       }
