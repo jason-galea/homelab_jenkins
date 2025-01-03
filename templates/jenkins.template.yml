@@ -23,7 +23,8 @@ credentials:
 jenkins:
   # location:
   #   url: "http://__JENKINS_IP__:8080/"
-  numExecutors: 0 ### Disable built-in node
+  numExecutors: 4 ### Disable built-in node
+  labelString: "jenkins"
   slaveAgentPort: 50000
 
   nodes:
