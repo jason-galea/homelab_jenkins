@@ -42,7 +42,17 @@ entire thing as all plugins are pre-installed.
 
 
 
-### Step 3 - Enjoy your pipelines!
+### Step 3 - Add Github PAT Credential
+
+- Dashboard --> Manage Jenkins --> Credentials --> System --> Global credentials (unrestricted)
+- Add Credentials
+    - Kind: Username with password
+    - Username: `jenkins_github_pat`
+    - Password: <Your_Github_PAT_Here>
+    - ID: `jenkins_github_pat`
+
+
+### Step 4 - Enjoy your pipelines!
 
 Congrats!
 
