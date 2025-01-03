@@ -6,7 +6,7 @@ jobs:
           github {
             // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).
             id('n98w7zy3n5dk87wzt3fgk4d8zq') // IMPORTANT: use a constant and unique identifier
-            // scanCredentialsId('github') // Public repo
+            scanCredentialsId('jenkins_github_pat')
             repoOwner('jason-galea')
             repository('proxmox_automation')
             // apiUri('http://my-github-server/api/v3') // Optional, needed for private github enterprise servers
