@@ -18,7 +18,12 @@ credentials:
               privateKeySource:
                 directEntry:
                   privateKey: "{__SSH_CRED_PRIVATE_KEY__}"
-              scope: GLOBAL
+              scope: GLOBAL"
+      - usernamePassword:
+          id: "jenkins_github_pat"
+          password: "{__GITHUB_READ_ONLY_PAT__}"
+          scope: GLOBAL
+          username: "jenkins_github_pat"
 
 jenkins:
   # location:
