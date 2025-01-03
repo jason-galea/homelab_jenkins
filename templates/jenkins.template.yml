@@ -53,6 +53,7 @@ jenkins:
             sshHostKeyVerificationStrategy:
               manuallyTrustedKeyVerificationStrategy:
                 requireInitialManualTrust: false
+        mode: EXCLUSIVE ### Only use when explicitely mentioned
         numExecutors: 2
         remoteFS: "/home/jenkins/agent"
         retentionStrategy: "always"
