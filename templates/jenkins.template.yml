@@ -25,6 +25,7 @@ jenkins:
   #   url: "http://__JENKINS_IP__:8080/"
   numExecutors: 4 ### Disable built-in node
   labelString: "jenkins"
+  mode: EXCLUSIVE ### Only use when explicitely mentioned
   slaveAgentPort: 50000
 
   nodes:
