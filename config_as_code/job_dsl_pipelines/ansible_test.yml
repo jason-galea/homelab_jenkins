@@ -1,7 +1,7 @@
 jobs:
   - script: >
-      multibranchPipelineJob('proxmox_automation_test') {
-        displayName('Proxmox Automation - Test Pipeline')
+      multibranchPipelineJob('ansible_test') {
+        displayName('Proxmox Automation - Ansible Test')
         branchSources {
           github {
             // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).

@@ -1,7 +1,7 @@
 jobs:
   - script: >
       multibranchPipelineJob('homelab_jenkins_test') {
-        displayName('Homelab Jenkins - Test Pipeline')
+        displayName('Homelab Jenkins - Test')
         branchSources {
           github {
             // The id option in the Git and GitHub branch source contexts is now mandatory (JENKINS-43693).
