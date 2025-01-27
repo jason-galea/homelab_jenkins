@@ -6,7 +6,7 @@ FROM jenkins/jenkins:lts-jdk21
 USER root
 
 ### This would be nice, but it also skips creating '/var/jenkins_home/secrets/initialAdminPassword'
-### TODO: Generate admin password in advance --> template it into jenkins.yml
+### TODO: Generate admin password in advance --> template into jenkins.yml?
 # ### https://github.com/jenkinsci/configuration-as-code-plugin/issues/393
 # ENV JAVA_OPTS "-Djenkins.install.runSetupWizard=false ${JAVA_OPTS:-}"
 

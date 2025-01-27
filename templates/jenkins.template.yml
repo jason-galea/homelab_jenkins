@@ -17,13 +17,14 @@ credentials:
               username: "jenkins_ssh"
               privateKeySource:
                 directEntry:
-                  privateKey: "{__SSH_CRED_PRIVATE_KEY__}"
-              scope: GLOBAL"
-          - usernamePassword:
-              id: "jenkins_github_pat"
-              password: "{__GITHUB_READ_ONLY_PAT__}"
+                  privateKey: __SSH_CRED_PRIVATE_KEY__
               scope: GLOBAL
-              username: "jenkins_github_pat"
+          # - usernamePassword:
+          #     id: "jenkins_github_pat"
+          #     password: "{__GITHUB_READ_ONLY_PAT__}" ### TODO: Read from file? Encode?
+          #     scope: GLOBAL
+          #     username: "jenkins_github_pat"
+          #     usernameSecret: true
 
 jenkins:
   # location:

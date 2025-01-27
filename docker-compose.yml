@@ -18,27 +18,27 @@ services:
     environment:
       DOCKER_HOST: unix:///var/run/docker.sock
       CASC_JENKINS_CONFIG: /var/jenkins_home/config_as_code/
-    networks:
-      - jenkins
+    # networks:
+    #   - jenkins
     restart: always
 
-  ssh_agent_1:
-    container_name: ssh_agent_1
-    image: jenkins/ssh-agent:jdk21
-    ports:
-      - "4444:22" ### Expose SSH port 4444
-    volumes:
-      - ./jenkins_agent_keys:/home/jenkins/.ssh:ro ### Prepared in "bootstrap_jenkins.sh"
-    environment:
-      SSH_PUBLIC_KEY_DIR: /home/jenkins/.ssh
-    networks:
-      - jenkins
-    restart: always
+  # ssh_agent_1:
+  #   container_name: ssh_agent_1
+  #   image: jenkins/ssh-agent:jdk21
+  #   ports:
+  #     - "4444:22" ### Expose SSH port 4444
+  #   volumes:
+  #     - ./jenkins_agent_keys:/home/jenkins/.ssh:ro ### Prepared in "bootstrap_jenkins.sh"
+  #   environment:
+  #     SSH_PUBLIC_KEY_DIR: /home/jenkins/.ssh
+  #   networks:
+  #     - jenkins
+  #   restart: always
 
 volumes:
   jenkins_data:
     name: jenkins_data
 
-networks:
-  jenkins:
-    driver: bridge
+# networks:
+#   jenkins:
+#     driver: bridge

@@ -1,4 +1,4 @@
-config_as_code/jenkins.yml
+config_as_code/jenkins_config/jenkins.yml
 DEBUG.txt
 .docker/
 jenkins_agent_keys/
