@@ -81,3 +81,4 @@ done
 
 URL="http://$IP:8080"
 echo -e "\n==> [LXC] Success! Your new Jenkins instance should be available at $URL"
+
