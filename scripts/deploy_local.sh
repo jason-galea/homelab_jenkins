@@ -6,11 +6,11 @@ HOME="$(pwd)"
 # IP=$(hostname -i | xargs)
 IP=$(hostname -I | xargs)
 
-echo -e "\n==> [LXC] DEBUG"
-echo "id = $(id)"
-echo "pwd = $(pwd)"
-echo "HOME = $HOME"
-echo "IP = $IP"
+# echo -e "\n==> [LXC] DEBUG"
+# echo "id = $(id)"
+# echo "pwd = $(pwd)"
+# echo "HOME = $HOME"
+# echo "IP = $IP"
 
 
 ###################################################################
@@ -68,7 +68,7 @@ docker compose up -d
 echo -e "\n==> [LXC] Wait for Jenkins to start..."
 while true; do
 
-    if [ "$(docker exec jenkins ls /var/jenkins_home/secrets/ 2> /dev/null | grep initialAdminPassword | wc -l)" != 0 ]; then
+    if [ $(docker exec jenkins ls /var/jenkins_home/secrets/ 2> /dev/null | grep initialAdminPassword | wc -l) != 0 ]; then
         echo -e "\n==> [LXC] Show initial admin password"
         docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
         break

@@ -22,8 +22,8 @@ credentials:
           - usernamePassword:
               id: "jenkins_github_pat"
               scope: GLOBAL
-              username: "${file:/var/jenkins_home/config_as_code/secrets/jenkins_github_pat}" ### TODO: Encode?
-              password: "${file:/var/jenkins_home/config_as_code/secrets/jenkins_github_pat}" ### TODO: Encode?
+              username: "${file:/var/jenkins_home/config_as_code/jenkins_config/secrets/jenkins_github_pat}" ### TODO: Encode?
+              password: "${file:/var/jenkins_home/config_as_code/jenkins_config/secrets/jenkins_github_pat}" ### TODO: Encode?
               usernameSecret: true
 
 jenkins:
