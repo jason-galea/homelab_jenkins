@@ -66,9 +66,6 @@ docker compose build
 echo -e "\n==> [LXC] Docker compose up"
 docker compose up -d
 
-URL="http://$IP:8080"
-echo -e "\n==> [LXC] Success! Your new Jenkins instance should be available at $URL"
-
 ### TODO: verify container healthy?
 
 echo -e "\n==> [LXC] Sleeping 5 seconds while Jenkins starts..."
@@ -77,3 +74,6 @@ sleep 5
 ### TODO: Loop to check if file exists first
 echo -e "\n==> [LXC] Show initial admin password"
 docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+URL="http://$IP:8080"
+echo -e "\n==> [LXC] Success! Your new Jenkins instance should be available at $URL"

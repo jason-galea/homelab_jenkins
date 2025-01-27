@@ -14,6 +14,19 @@ all other services from its GUI.
 Pipelines are defined in the `config_as_code/job_dsl_pipelines` directory.
 
 
+
+### (Step 0 - Deploy Jenkins on localhost to test)
+
+    $ git clone https://github.com/jason-galea/homelab_jenkins.git
+
+    $ cd homelab_jenkins
+
+    $ echo '' > secrets/jenkins_github_pat
+
+    $ ./scripts/deploy_local.sh
+
+
+
 ### Step 1 - Deploy Jenkins
 
 From a Proxmox host, clone the repo and run the install script
